@@ -18,7 +18,7 @@ on:
 
 jobs:
   build-kernel:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       fail-fast: false
       matrix:
@@ -108,7 +108,7 @@ jobs:
 
           perl -0pi -e 's/if \(IS_ERR\(f\)\) \{/if (IS_ERR(f) && !libperfmgr_redirect(&f, dfd, tmp, &op, how)) {/g' fs/open.c
           
-          patch -p1 < ../kernel_patches/sultan/sys.c_fix.patch
+          patch -p1 < ../sultan-ksu-kernel-patches/sultan/sys.c_fix.patch
 
       - name: Configure KernelSU
         if: contains(matrix.features, 'ksun')
@@ -122,7 +122,7 @@ jobs:
           else
             echo "CONFIG_KSU_MANUAL_HOOKS=y" >> ./arch/arm64/configs/${{ inputs.codename }}_defconfig
             echo "CONFIG_KSU_SUSFS=n" >> ./arch/arm64/configs/${{ inputs.codename }}_defconfig
-            patch -p1 < ../kernel_patches/wild/hooks/69_pure_manual_hooks_only.patch
+            patch -p1 < ../sultan-ksu-kernel-patches/wild/hooks/69_pure_manual_hooks_only.patch
           fi
 
       - name: Configure Mountify Support
