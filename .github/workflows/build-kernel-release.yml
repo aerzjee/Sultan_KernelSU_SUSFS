@@ -24,7 +24,7 @@ jobs:
     env:
       REPO_OWNER: aerzjee
       REPO_NAME: Sultan_KernelSU_SUSFS
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       RELEASE_NAME: "Sultan Kernels With KernelSU Next & SUSFS v2.1.0"
       RELEASE_NOTES: |
         This release contains KernelSU Next and SUSFS v2.1.0
@@ -132,7 +132,7 @@ jobs:
               gh release upload ${{ env.NEW_TAG }} "$new_filepath"
           done
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NEW_TAG: ${{ env.NEW_TAG }}
 
       # Display Files Uploaded
