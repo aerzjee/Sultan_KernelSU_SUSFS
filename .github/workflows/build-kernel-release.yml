@@ -18,7 +18,7 @@ jobs:
       kernel_version: "6.1"
 
   trigger-release:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs:
         - build-kernel-zuma
     env:
