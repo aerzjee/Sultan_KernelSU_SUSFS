@@ -24,6 +24,8 @@ jobs:
       matrix:
         features: ["ksun-susfs"]
     steps:
+      - name: Clean runner
+        uses: atos-actions/clean-self-hosted-runner@v1
       #- name: Maximize Build Space
       #  uses: AdityaGarg8/remove-unwanted-software@v5
       #  with:
