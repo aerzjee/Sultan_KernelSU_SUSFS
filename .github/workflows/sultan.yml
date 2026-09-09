@@ -67,7 +67,7 @@ jobs:
 
           # Clone repositories using the branch names
           git clone https://github.com/TheWildJames/AnyKernel3.git -b "$ANYKERNEL_BRANCH"
-          git clone https://github.com/TheWildJames/kernel_patches.git
+          git clone https://github.com/aerzjee/sultan-ksu-kernel-patches.git
           git clone https://github.com/TheWildJames/android_kernel_google_tensynos --depth=1
           SUSFS_BRANCH="gki-${{ inputs.android_version }}-${{ inputs.kernel_version }}"
           git clone https://gitlab.com/simonpunk/susfs4ksu.git -b "$SUSFS_BRANCH"
@@ -86,8 +86,8 @@ jobs:
         run: |
           # Apply pershoot susfs4ksu coexistence patches
           cd susfs4ksu
-          patch -p1 < "${{ github.workspace }}/kernel_patches/pershoot/susfs4ksu/0001-pershoot-Allow-core-to-be-built-with-no-features.patch"
-          patch -p1 < "${{ github.workspace }}/kernel_patches/pershoot/susfs4ksu/0002-pershoot-Implement-SuSFS-and-Toolkit-coexistence.patch"
+          patch -p1 < "${{ github.workspace }}/sultan-ksu-kernel-patches/pershoot/susfs4ksu/0001-pershoot-Allow-core-to-be-built-with-no-features.patch"
+          patch -p1 < "${{ github.workspace }}/sultan-ksu-kernel-patches/pershoot/susfs4ksu/0002-pershoot-Implement-SuSFS-and-Toolkit-coexistence.patch"
           cd ..
 
           echo "Changing to configuration directory: $CONFIG..."
